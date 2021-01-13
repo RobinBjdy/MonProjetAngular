@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-postlistcomponent',
@@ -6,8 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./postlistcomponent.component.scss']
 })
 export class PostlistcomponentComponent implements OnInit {
+  lastUpdate = new Promise((resolve, reject) => {
+    const date = new Date();
+    setTimeout(
+      () => {
+        resolve(date);
+      }, 2000
+    );
+  });
+  @Input() postTitre: string;
+  @Input() postContent: string;
 
-  constructor() { }
+  constructor() {
+    this.postTitre = "";
+    this.postContent = "";
+  }
 
   ngOnInit(): void {
   }

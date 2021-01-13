@@ -1,1 +1,7 @@
-<p>postlistcomponent works!</p>
+<li style="margin-top: 15px;" class="list-group-item">
+    <h4 style="float: right;">{{ lastUpdate | async | date: 'EEEE d MMMM y' | uppercase}}</h4>
+    <h3>{{ postTitre }}</h3>
+    <h5>{{ postContent }}</h5>
+    <button style="margin-right: 5px;" class="btn btn-success" (click)="onLove()">Love It !</button>
+    <button class="btn btn-danger" (click)="onDontLove()">Don't Love it !</button>
+</li>
