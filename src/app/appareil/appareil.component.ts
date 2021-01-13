@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { rendererTypeName } from '@angular/compiler';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-appareil',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppareilComponent implements OnInit {
 
-  constructor() { }
+  @Input() appareilName: string;
 
-  ngOnInit(): void {
+  @Input() appareilStatus: string;
+
+  constructor() {
+    this.appareilName = "";
+    this.appareilStatus = "";
   }
 
+  ngOnInit() {
+  }
+
+  getStatus() {
+    return this.appareilStatus;
+  }
+
+  getColor() {
+    if (this.appareilStatus === 'éteint') {
+      return 'red';
+    }
+    else {
+      return 'green'
+    }
+  }
 }
