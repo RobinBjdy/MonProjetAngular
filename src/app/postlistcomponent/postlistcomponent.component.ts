@@ -6,16 +6,12 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./postlistcomponent.component.scss']
 })
 export class PostlistcomponentComponent implements OnInit {
-  lastUpdate = new Promise((resolve, reject) => {
-    const date = new Date();
-    setTimeout(
-      () => {
-        resolve(date);
-      }, 2000
-    );
-  });
+  lastUpdate =  new Date();
+    
   @Input() postTitre: string;
   @Input() postContent: string;
+
+  loveIt = 0;
 
   constructor() {
     this.postTitre = "";
@@ -25,4 +21,11 @@ export class PostlistcomponentComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onLove() {
+    this.loveIt += 1;
+  }
+
+  onDontLove() {
+    this.loveIt -=1;
+  }
 }
