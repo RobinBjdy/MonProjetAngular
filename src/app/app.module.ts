@@ -10,7 +10,20 @@ import { PostlistcomponentComponent } from './postlistcomponent/postlistcomponen
 import { AppareilService } from './service/appareil.service';
 import { AuthComponent } from './auth/auth.component';
 import { AppareilViewComponent } from './appareil-view/appareil-view.component';
+import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
 import { PostViewComponent } from './post-view/post-view.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthService } from './service/auth.service';
+import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
+
+
+const appRoutes: Routes = [
+  { path: 'appareils', component: AppareilViewComponent },
+  { path: 'appareils/:id', component: SingleAppareilComponent },
+  { path: 'posts', component: PostViewComponent },
+  { path: 'auth', component: AuthComponent },
+  { path: '', component: AppareilViewComponent }
+];
 
 @NgModule({
   declarations: [
@@ -20,15 +33,18 @@ import { PostViewComponent } from './post-view/post-view.component';
     PostlistcomponentComponent,
     AuthComponent,
     AppareilViewComponent,
-    PostViewComponent
+    PostViewComponent,
+    FourOhFourComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    FormsModule
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    AppareilService
+    AppareilService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

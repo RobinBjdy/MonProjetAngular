@@ -12,11 +12,13 @@ export class AppareilComponent implements OnInit {
   @Input() appareilName: string;
   @Input() appareilStatus: string;
   @Input() index: number;
+  @Input() id: number;
 
   constructor(private appareilService: AppareilService) {
     this.appareilName = "";
     this.appareilStatus = "";
     this.index = 0;
+    this.id = 0;
   }
 
   ngOnInit() {

@@ -7,7 +7,8 @@
           <app-appareil  *ngFor="let appareil of appareils; let i = index"
                          [appareilName]="appareil.name"
                          [appareilStatus]="appareil.status" 
-                         [index]="i"></app-appareil>
+                         [index]="i"
+                         [id]="appareil.id"></app-appareil>
       </ul>
         <button style="margin-right: 5px;" class="btn btn-success" [disabled]="!isAuth" (click)="onAllumer()">Tout
           allumer</button>
@@ -15,4 +16,3 @@
       </div>
     </div>
   </div>
-<router-outlet></router-outlet>
