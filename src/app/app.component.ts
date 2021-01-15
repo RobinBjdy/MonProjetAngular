@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   
   constructor() {
     this.secondes = 0;
+    this.counterSubscription = new Subscription;
   }
   ngOnInit() {
       const counter = interval(1000);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppareilService } from 'src/app/service/appareil.service';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-appareil-view',

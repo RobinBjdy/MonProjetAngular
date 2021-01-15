@@ -56,13 +56,13 @@ export class AppareilService {
     this.emitAppareilSubject();
   }
 
-  getAppareilById(id: number) {
+  getAppareilById(id: number){
     const appareil = this.appareils.find(
       (s) => {
         return s.id === id;
       }
     );
     return appareil;
-  }
+  } 
 
 }
