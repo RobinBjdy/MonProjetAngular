@@ -11,23 +11,23 @@ export class AppComponent implements OnInit {
 
   secondes: number;
   counterSubscription: Subscription;
-
+  
   constructor() {
     this.secondes = 0;
   }
   ngOnInit() {
-    const counter = interval(1000);
-    counter.subscribe(
-      (value) => {
-        this.secondes = value;
-      },
-      (error) => {
-        console.log('Uh-oh, an error occurred! : ' + error);
-      },
-      () => {
-        console.log('Observable complete!');
-      }
-    );
+      const counter = interval(1000);
+      counter.subscribe(
+        (value) => {
+          this.secondes = value;
+        },
+        (error) => {
+          console.log('Uh-oh, an error occurred! : ' + error);
+        },
+        () => {
+          console.log('Observable complete!');
+        }
+      );
   }
 
   ngOnDestroy() {
