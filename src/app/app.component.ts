@@ -1,7 +1,6 @@
-import { DatePipe } from '@angular/common';
-import { newArray } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
-import { AppareilService } from './service/appareil.service';
+import { interval } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +9,30 @@ import { AppareilService } from './service/appareil.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor() { }
+  secondes: number;
+  counterSubscription: Subscription;
 
-  ngOnInit() { }
+  constructor() {
+    this.secondes = 0;
+  }
+  ngOnInit() {
+    const counter = interval(1000);
+    counter.subscribe(
+      (value) => {
+        this.secondes = value;
+      },
+      (error) => {
+        console.log('Uh-oh, an error occurred! : ' + error);
+      },
+      () => {
+        console.log('Observable complete!');
+      }
+    );
+  }
 
+  ngOnDestroy() {
+    this.counterSubscription.unsubscribe();
+  }
 }
+
 
