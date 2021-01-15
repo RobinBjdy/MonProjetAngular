@@ -1,32 +1,31 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <h2>Mes appareils</h2>
-      <p>Mis à jour : {{ lastUpdate | async | date: 'EEEE d MMMM y' | uppercase}}</p>
-      <ul class="list-group">
-        <app-appareil  *ngFor="let appareil of appareils; let i = index"
-                       [appareilName]="appareil.name"
-                       [appareilStatus]="appareil.status" 
-                       [index]="i"></app-appareil>
-    </ul>
-      <button style="margin-right: 5px;" class="btn btn-success" [disabled]="!isAuth" (click)="onAllumer()">Tout
-        allumer</button>
-      <button class="btn btn-danger" [disabled]="!isAuth" (click)="onEteindre()">Tout éteindre</button>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <h2>Posts</h2>
-      <ul class="list-group">
-        <app-postlistcomponent *ngFor="let post of postlistcomponent" [postTitre]="post.titre"
-          [postContent]="post.content">
-        </app-postlistcomponent>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Authentification</a></li>
+        <li class="active"><a href="#">Appareils</a></li>
       </ul>
     </div>
   </div>
-</div>
+</nav>
 
-<router-outlet></router-outlet>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <app-appareil-view></app-appareil-view>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2>Posts</h2>
+          <ul class="list-group">
+            <app-postlistcomponent *ngFor="let post of postlistcomponent" [postTitre]="post.titre"
+              [postContent]="post.content">
+            </app-postlistcomponent>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

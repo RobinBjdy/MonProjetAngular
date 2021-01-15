@@ -9,19 +9,8 @@ import { AppareilService } from './service/appareil.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  isAuth = false;
-  appareils: any[];
 
-  lastUpdate = new Promise((resolve, reject) => {
-    const date = new Date();
-    setTimeout(
-      () => {
-        resolve(date);
-      }, 2000
-    );
-  });
-
-  postlistcomponent = [
+ postlistcomponent = [
     {
       titre: 'Mon premier post',
       content: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.'
@@ -36,29 +25,11 @@ export class AppComponent implements OnInit {
     }
   ];
 
-  constructor(private appareilService: AppareilService) {
-    setTimeout(
-      () => {
-        this.isAuth = true;
-      }, 4000
-    );
-
-    this.appareils = new Array();
+  constructor() {
+    
   }
 
-  ngOnInit() {
-    this.appareils = this.appareilService.appareils;
-  }
-
-  onAllumer() {
-    this.appareilService.switchOnAll();
-  }
-
-  onEteindre() {
-    if (confirm('Etes-vous sûr de vouloir éteindre tous vos appareils ?')) {
-      this.appareilService.switchOffAll();
-    } else {}
-  }
+  ngOnInit() {}
 
 }
 

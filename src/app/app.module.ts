@@ -10,6 +10,7 @@ import { PostlistcomponentComponent } from './postlistcomponent/postlistcomponen
 import { AppareilService } from './service/appareil.service';
 import { AuthComponent } from './auth/auth.component';
 import { AppareilViewComponent } from './appareil-view/appareil-view.component';
+import { PostViewComponent } from './post-view/post-view.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AppareilViewComponent } from './appareil-view/appareil-view.component';
     AppareilComponent,
     PostlistcomponentComponent,
     AuthComponent,
-    AppareilViewComponent
+    AppareilViewComponent,
+    PostViewComponent
   ],
   imports: [
     BrowserModule,
