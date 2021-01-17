@@ -12,17 +12,20 @@ export class AppareilService {
     {
       id: 1,
       name: 'Machine à laver',
-      status: 'éteint'
+      status: 'éteint',
+      image: './images/MachineàLaver.png'
     },
     {
       id: 2,
       name: 'Frigo',
-      status: 'allumé'
+      status: 'allumé',
+      image: './images/Frigo.png'
     },
     {
       id: 3,
       name: 'Ordinateur',
-      status: 'éteint'
+      status: 'éteint',
+      image: './images/Ordinateur.png'
     }
   ];
 

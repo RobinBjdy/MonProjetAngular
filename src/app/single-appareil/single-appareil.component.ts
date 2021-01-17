@@ -10,7 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 export class SingleAppareilComponent implements OnInit {
 
   name: string | undefined = 'Appareil';
-  status: string | undefined = 'Statut'; 
+  status: string | undefined = 'Statut';
+  image: string | undefined = 'Images';
 
   constructor(private appareilService: AppareilService , private route: ActivatedRoute) { }
 
@@ -18,6 +19,7 @@ export class SingleAppareilComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.name = this.appareilService?.getAppareilById(+id)?.name;
     this.status = this.appareilService?.getAppareilById(+id)?.status;
+    this.image = this.appareilService?.getAppareilById(+id)?.image;
   }
 
 }
