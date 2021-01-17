@@ -13,6 +13,7 @@ import { SingleAppareilComponent } from './single-appareil/single-appareil.compo
 import { PostViewComponent } from './post-view/post-view.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthService } from './service/auth.service';
+import { UserService } from './service/user.service';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { AuthGuard } from './service/auth-guard.service';
 import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
@@ -57,6 +58,7 @@ const appRoutes: Routes = [
   providers: [
     AppareilService,
     AuthService,
+    UserService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

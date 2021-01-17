@@ -2,7 +2,6 @@ import { User } from '../models/User.model';
 import { Subject } from 'rxjs/Subject';
 
 export class UserService {
-  private users: User[];
   userSubject = new Subject<User[]>();
 
   constructor() {
