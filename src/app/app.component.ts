@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
+import { AuthService } from '../app/service/auth.service'
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit {
 
   secondes: number;
   counterSubscription: Subscription;
-  
+
   constructor() {
     this.secondes = 0;
     this.counterSubscription = new Subscription;

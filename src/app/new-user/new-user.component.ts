@@ -11,7 +11,7 @@ import { User } from '../models/User.model';
 })
 export class NewUserComponent implements OnInit {
 
-  userForm: FormGroup;
+  userForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
