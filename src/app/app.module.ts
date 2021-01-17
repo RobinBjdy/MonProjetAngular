@@ -35,7 +35,8 @@ const appRoutes: Routes = [
     AuthComponent,
     AppareilViewComponent,
     PostViewComponent,
-    FourOhFourComponent
+    FourOhFourComponent,
+    SingleAppareilComponent
   ],
   imports: [
     AppRoutingModule,
