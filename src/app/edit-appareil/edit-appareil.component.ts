@@ -20,7 +20,8 @@ export class EditAppareilComponent implements OnInit {
   onSubmit(form: NgForm){
     const name = form.value['name'];
     const status = form.value['status'];
-    this.appareilService.addAppareil(name, status);
+    const image = form.value['image'];
+    this.appareilService.addAppareil(name, status, image);
     this.router.navigate(['/appareils']);
   }
 }
