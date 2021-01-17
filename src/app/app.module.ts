@@ -15,6 +15,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthService } from './service/auth.service';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { AuthGuard } from './service/auth-guard.service';
+import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
 
 
 const appRoutes: Routes = [
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
     AppareilViewComponent,
     PostViewComponent,
     FourOhFourComponent,
-    SingleAppareilComponent
+    SingleAppareilComponent,
+    EditAppareilComponent
   ],
   imports: [
     AppRoutingModule,
