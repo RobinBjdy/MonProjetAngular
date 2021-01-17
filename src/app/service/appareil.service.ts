@@ -13,19 +13,19 @@ export class AppareilService {
       id: 1,
       name: 'Machine à laver',
       status: 'éteint',
-      image: './images/MachineàLaver.png'
+      image: '../images/MachineàLaver.png'
     },
     {
       id: 2,
       name: 'Frigo',
       status: 'allumé',
-      image: './images/Frigo.png'
+      image: '../images/Frigo.png'
     },
     {
       id: 3,
       name: 'Ordinateur',
       status: 'éteint',
-      image: './images/Ordinateur.png'
+      image: '../images/Ordinateur.png'
     }
   ];
 
