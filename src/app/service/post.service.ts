@@ -23,6 +23,9 @@ export class PostService {
     }
   ];
 
+  
+  loveIt = 0;
+
   constructor() { }
 
   emitPostSubject() {
@@ -38,6 +41,14 @@ export class PostService {
     postObject.content = content;
     this.postlistcomponent.push(postObject);
     this.emitPostSubject();
+  }
+
+  onLove() {
+    this.loveIt += 1;
+  }
+
+  onDontLove() {
+    this.loveIt -=1;
   }
 
 }
