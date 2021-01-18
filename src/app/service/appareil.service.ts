@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class AppareilService {
     }
   ];
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   emitAppareilSubject() {
     this.appareilsSubject.next(this.appareils.slice());
@@ -59,16 +60,16 @@ export class AppareilService {
     this.emitAppareilSubject();
   }
 
-  getAppareilById(id: number){
+  getAppareilById(id: number) {
     const appareil = this.appareils.find(
       (s) => {
         return s.id === id;
       }
     );
     return appareil;
-  } 
+  }
 
-  addAppareil(name: string, status: string, image: string){
+  addAppareil(name: string, status: string, image: string) {
     const appareilObject = {
       id: 0,
       name: '',
@@ -82,4 +83,32 @@ export class AppareilService {
     this.appareils.push(appareilObject);
     this.emitAppareilSubject();
   }
+
+  saveAppareilsToServer() {
+    this.httpClient
+      .put('https://httpclient-demo.firebaseio.com/appareils.json', this.appareils)
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé !');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+  }
+
+  getAppareilsFromServer() {
+    this.httpClient
+      .get<any[]>('https://httpclient-demo.firebaseio.com/appareils.json')
+      .subscribe(
+        (response) => {
+          this.appareils = response;
+          this.emitAppareilSubject();
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+  }
+
 }
