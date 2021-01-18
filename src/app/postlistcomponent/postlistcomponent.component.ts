@@ -10,12 +10,14 @@ export class PostlistcomponentComponent implements OnInit {
     
   @Input() postTitre: string;
   @Input() postContent: string;
+  @Input() postLove: number;
 
   loveIt = 0;
 
   constructor() {
     this.postTitre = "";
     this.postContent = "";
+    this.postLove = this.loveIt;
   }
 
   ngOnInit(): void {
