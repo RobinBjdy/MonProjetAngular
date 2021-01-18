@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from '../service/post.service'
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-post-view',
@@ -7,24 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostViewComponent implements OnInit {
 
-  postlistcomponent = [
-    {
-      titre: 'Mon premier post',
-      content: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.'
-    },
-    {
-      titre: 'Mon deuxième post',
-      content: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.'
-    },
-    {
-      titre: 'Mon troisième post',
-      content: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.'
-    }
-  ];
+  postlistcomponent: any[];
+  postSubscription: Subscription;
 
-  constructor() { }
+  constructor(private postService: PostService) {
+    this.postlistcomponent = new Array();
+    this.postSubscription = new Subscription;
+  }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.postSubscription = this.postService.postSubject.subscribe(
+      (appareils: any[]) => {
+        this.postlistcomponent = appareils;
+      }
+    );
+    this.postService.emitPostSubject();
   }
 
 }
