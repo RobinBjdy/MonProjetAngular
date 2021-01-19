@@ -7,12 +7,12 @@ import { PostService } from '../service/post.service'
   styleUrls: ['./postlistcomponent.component.scss']
 })
 export class PostlistcomponentComponent implements OnInit {
-  lastUpdate =  new Date();
-    
+  lastUpdate = new Date();
+
   @Input() postTitre: string;
   @Input() postContent: string;
   @Input() postLove: number;
-
+  
   constructor(private PostService: PostService) {
     this.postTitre = "";
     this.postContent = "";
@@ -32,5 +32,9 @@ export class PostlistcomponentComponent implements OnInit {
   onDontLove() {
     this.PostService.onDontLove();
     this.loveIt -= 1;
+  }
+
+  onDeletePost() {
+    this.PostService.suppPost(this.postTitre, this.postContent);
   }
 }

@@ -23,13 +23,24 @@ export class PostService {
     }
   ];
 
-  
+  postlistsupp = [
+    {
+      titre: 'Mon deuxième post',
+      content: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.'
+    }
+  ]
+
+
   loveIt = 0;
 
   constructor() { }
 
   emitPostSubject() {
     this.postSubject.next(this.postlistcomponent.slice());
+  }
+
+  emitPostSubject2() {
+    this.postSubject.next(this.postlistsupp.slice());
   }
 
   addPost(titre: string, content: string) {
@@ -43,12 +54,23 @@ export class PostService {
     this.emitPostSubject();
   }
 
+  suppPost(titre: string, content: string) {
+    const postObject = {
+      titre: '',
+      content: '',
+    };
+    postObject.titre = titre;
+    postObject.content = content;
+    this.postlistsupp.push(postObject);
+    this.emitPostSubject2();
+  }
+
   onLove() {
     this.loveIt += 1;
   }
 
   onDontLove() {
-    this.loveIt -=1;
+    this.loveIt -= 1;
   }
 
 }
