@@ -8,7 +8,8 @@
         <li routerLinkActive="active"><a routerLink="/users">Utilisateurs</a></li>
       </ul>
       <div class="navbar-right">
-        <p>Vous êtes connecté depuis {{ secondes }} secondes !</p>
+        <p *ngIf="this.auth.isAuth">Vous êtes connecté depuis {{ secondes }} secondes !</p>
+        <p *ngIf="this.auth.isAuth === false">Vous n'êtes pas connecté !</p>
       </div>
     </div>
   </div>
