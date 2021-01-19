@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Post } from '../models/post.model';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -6,71 +7,39 @@ import { Subject } from 'rxjs';
 })
 export class PostService {
 
-  postSubject = new Subject<any[]>();
-
-  postlistcomponent = [
-    {
-      titre: 'Mon premier post',
-      content: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.'
-    },
-    {
-      titre: 'Mon deuxième post',
-      content: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.'
-    },
-    {
-      titre: 'Mon troisième post',
-      content: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.'
-    }
-  ];
-
-  postlistsupp = [
-    {
-      titre: 'Mon deuxième post',
-      content: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.'
-    }
-  ]
+  post: Post[] = [];
+  postSubject = new Subject<Post[]>();
 
 
   loveIt = 0;
 
   constructor() { }
 
-  emitPostSubject() {
-    this.postSubject.next(this.postlistcomponent.slice());
+  emitPosts() {
+    this.postSubject.next(this.post);
   }
 
-  emitPostSubject2() {
-    this.postSubject.next(this.postlistsupp.slice());
+  // Création d'un nouveau post
+  createNewPost(newPost: Post) {
+    this.post.push(newPost);
+    this.emitPosts();
   }
 
-  addPost(titre: string, content: string) {
-    const postObject = {
-      titre: '',
-      content: '',
-    };
-    postObject.titre = titre;
-    postObject.content = content;
-    this.postlistcomponent.push(postObject);
-    this.emitPostSubject();
+  // Suppression d'un post
+  removePost(post: Post) {
+    const postIndexToRemove = this.post.findIndex(
+      (postEl) => {
+        if (postEl === post) {
+          return true;
+        }else{ return false}
+      }
+    );
+    this.post.splice(postIndexToRemove, 1);
+    this.emitPosts();
   }
 
-  suppPost(titre: string, content: string) {
-    const postObject = {
-      titre: '',
-      content: '',
-    };
-    postObject.titre = titre;
-    postObject.content = content;
-    this.postlistsupp.push(postObject);
-    this.emitPostSubject2();
-  }
-
-  onLove() {
-    this.loveIt += 1;
-  }
-
-  onDontLove() {
-    this.loveIt -= 1;
+  removeAllPost(posts: number) {
+    this.post.splice(posts);
   }
 
 }

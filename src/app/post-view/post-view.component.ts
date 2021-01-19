@@ -1,29 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-import { PostService } from '../service/post.service'
-import { Subscription } from 'rxjs/Subscription';
+import { Component,  OnDestroy, OnInit } from '@angular/core';
+import { PostService } from '../service/post.service';
+import { Post } from '../models/post.model';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-view',
   templateUrl: './post-view.component.html',
   styleUrls: ['./post-view.component.scss']
 })
-export class PostViewComponent implements OnInit {
+export class PostViewComponent implements OnInit, OnDestroy {
 
-  postlistcomponent: any[];
-  postSubscription: Subscription;
+  posts!: Post[];
+  postsSubscription!: Subscription;
 
-  constructor(private postService: PostService) {
-    this.postlistcomponent = new Array();
-    this.postSubscription = new Subscription;
-  }
+  constructor(private postService: PostService, private router: Router) { }
 
   ngOnInit() {
-    this.postSubscription = this.postService.postSubject.subscribe(
-      (appareils: any[]) => {
-        this.postlistcomponent = appareils;
+    this.postsSubscription = this.postService.postSubject.subscribe(
+      (posts: Post[]) => {
+        this.posts = posts;
       }
     );
-    this.postService.emitPostSubject();
+    this.postService.emitPosts();
   }
 
+  onNewPost() {
+    this.router.navigate(['/posts', 'new']);
+  }
+
+  onViewPost(id: number) {
+    this.router.navigate(['/posts', 'view', id]);
+  }
+
+  onDeleteAllPosts(posts: number) {
+    const confirmation = confirm('Etes-vous sûr de vouloir tout supprimer?');
+    if (confirmation) {
+      this.postService.removeAllPost(posts);
+    }
+  }
+
+  ngOnDestroy() {
+    this.postsSubscription.unsubscribe();
+  }
 }

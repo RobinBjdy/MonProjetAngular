@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <h2>Posts</h2>
-        <ul class="list-group">
-          <app-postlistcomponent *ngFor="let post of postlistcomponent" [postTitre]="post.titre"
-            [postContent]="post.content">
-          </app-postlistcomponent>
-        </ul>
-        <button routerLink="/new-post" style="margin-right: 5px;" class="btn btn-primary" >Nouveau post</button>
+        <h1>Posts</h1>
+        <div class="btn-allDelete">
+            <button class="btn btn-danger" (click)="onDeleteAllPosts(posts)">Suprimer tout les posts</button>        
+        </div>      
+        <app-post-list [posts]="posts"></app-post-list>      
       </div>
     </div>
   </div>
+  
+

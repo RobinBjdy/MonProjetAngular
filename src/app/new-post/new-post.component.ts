@@ -1,25 +1,45 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Post } from '../models/post.model';
+import { PostService } from '../service/post.service';
 import { Router } from '@angular/router';
-import { PostService } from 'src/app/service/post.service';
 
 @Component({
-  selector: 'app-new-post',
+  selector: 'app-newpost',
   templateUrl: './new-post.component.html',
-  styleUrls: ['./new-post.component.scss']
+  styleUrls: ['./new-post.component.css']
 })
-export class NewPostComponent implements OnInit {
+export class NewpostComponent implements OnInit {
 
-  constructor(private postService: PostService, private router: Router) { }
+  postForm!: FormGroup;
 
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder,
+              private postsService: PostService,
+              private router: Router) { }
+
+  ngOnInit() {
+    this.initForm();
   }
 
-  onSubmit(form: NgForm){
-    const name = form.value['name'];
-    const texte = form.value['texte'];
-    this.postService.addPost(name, texte);
+  initForm() {
+    this.postForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      content: ['', Validators.required],
+      loveIts: 0,
+      created_at: ''
+    });
+  }
+
+  onSavePost() {
+    const title = this.postForm.get('title')?.value;
+    const content = this.postForm.get('content')?.value;
+    const loveIts = this.postForm.get('loveIts')?.value;
+    const created_at = Date.now();
+    const newPost = new Post(title, content, loveIts, created_at);
+    this.postsService.createNewPost(newPost);
     this.router.navigate(['/posts']);
   }
 
 }
+
+
