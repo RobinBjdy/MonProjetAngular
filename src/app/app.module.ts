@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppareilComponent } from './appareil/appareil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PostlistcomponentComponent } from './postlistcomponent/postlistcomponent.component';
+import { PostListItemComponent } from './post-list-item/post-list-item.component';
 import { AppareilService } from './service/appareil.service';
 import { AuthComponent } from './auth/auth.component';
 import { AppareilViewComponent } from './appareil-view/appareil-view.component';
@@ -19,7 +19,7 @@ import { AuthGuard } from './service/auth-guard.service';
 import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { NewUserComponent } from './new-user/new-user.component';
-import { NewPostComponent } from './new-post/new-post.component';
+import { NewpostComponent } from './new-post/new-post.component';
 
 
 const appRoutes: Routes = [
@@ -30,7 +30,7 @@ const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'users', component: UserListComponent },
   { path: 'new-user', component: NewUserComponent },
-  { path: 'new-post', component: NewPostComponent },
+  { path: 'new-post', component: NewpostComponent },
   { path: '', component: AppareilViewComponent },
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found' }
@@ -40,7 +40,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     AppareilComponent,
-    PostlistcomponentComponent,
+    PostListItemComponent,
     AuthComponent,
     AppareilViewComponent,
     PostViewComponent,
@@ -49,7 +49,7 @@ const appRoutes: Routes = [
     EditAppareilComponent,
     UserListComponent,
     NewUserComponent,
-    NewPostComponent,
+    NewpostComponent,
   ],
   imports: [
     AppRoutingModule,
